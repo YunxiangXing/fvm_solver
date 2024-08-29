@@ -23,8 +23,9 @@ namespace FVM {
 		void findsharedface();
 		void init(string cwd);
 		void cal_Diff(string cwd);
-		void cal_gradient1(vector<double>&);
-		void cal_gradient(vector<double>&);
+		void cal_Convertion(string cwd);
+		void cal_gradient1(vector<double>&, vector<double>&);
+		void cal_gradient(vector<double>&, vector<double>&);
 		//压力速度耦合算法
 		void simple();
 		void read(string cwd);
@@ -34,6 +35,7 @@ namespace FVM {
 		//virtual void write() override;
 		//
 	private:
+		vector<double> solver_equtionGaussSeidel(vector<vector<double>>& A, vector<double>& b) override;//高斯赛德尔迭代
 		void pgrad(Point&, int, int, Point&, Point&, double);
 		//vector<Element_cvfem>mesh_eles;//单元
 		//vector<Point>mesh_nodes;//节点

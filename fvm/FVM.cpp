@@ -8,7 +8,7 @@ void Fvm::pgrad(Point& g, int id, int i, Point& df, Point& Sf,double y) {
 		Gradelements[i].push_back(temp);
 	}
 }
-void Fvm::cal_gradient1(vector<double>& fai) {
+void Fvm::cal_gradient1(vector<double>& fai, vector<double>& b) {
 	//step1:计算全局梯度使用现有的fai
 	Grad.resize(mesh_eles.size());
 	for (int i = 0; i < mesh_eles.size(); i++) {
@@ -126,32 +126,12 @@ void Fvm::cal_gradient1(vector<double>& fai) {
 				//fai_fj
 				Point grad_fai_fj = gfi * Grad[i] + (1.0 - gfi) * Grad[share];
 				Tf = Sf[j] - Ef;
-				bp[i] += grad_fai_fj * Tf * (gfi * diff_k[i] + (1.0 - gfi) * diff_k[share]);
-			}
-			else {
-				//边界条件中的交叉扩散项   grad_fai_b * kiff * Tb
-				/*Point ecb = f[j] - mesh_eles[i].getcent();
-				double dcb = norm(ecb);
-				ecb = 1.0 / dcb * ecb;
-				Point Eb = (Sf[j] * Sf[j]) / (ecb * Sf[j]) * ecb;
-				gDiff[j] = norm(Eb) / dcb;
-				Point Tb = Sf[j] - Eb;
-				Point ef = 1.0 / norm(Sf[j]) * Sf[j];*/
-				//指定边界通过向内差分计算梯度 grad_fai_b
-				/*if (fvm_bj[id[j]] == 1) {
-					Point d = f[j] - mesh_eles[i].getcent();
-					bp[i] += (1.0 - fai[i]) / norm(d) * ef * Tb * diff_k[i];
-				}
-				else if (fvm_bj[id[j]] == 2) {
-					Point d = f[j] - mesh_eles[i].getcent();
-					bp[i] += (0.0 - fai[i]) / norm(d) * ef * Tb * diff_k[i];
-				}*/
-				//bp[i] += Grad[i] * Tb * diff_k[i];
+				b[i] += grad_fai_fj * Tf * (gfi * diff_k[i] + (1.0 - gfi) * diff_k[share]);
 			}
 		}
 	}
 }
-void Fvm::cal_gradient(vector<double>& fai) {
+void Fvm::cal_gradient(vector<double>& fai, vector<double>& b) {
 	//step1:计算全局梯度使用现有的fai
 	Grad.resize(mesh_eles.size());
 	for (int i = 0; i < mesh_eles.size(); i++) {
@@ -228,7 +208,7 @@ void Fvm::cal_gradient(vector<double>& fai) {
 				//fai_fj
 				Point grad_fai_fj = gfi * Grad[i] + (1.0 - gfi) * Grad[share];
 				Tf = Sf[j] - Ef;
-				bp[i] += grad_fai_fj * Tf * (gfi * diff_k[i] + (1.0 - gfi) * diff_k[share]);
+				b[i] += grad_fai_fj * Tf * (gfi * diff_k[i] + (1.0 - gfi) * diff_k[share]);
 			}
 			else {
 				//边界条件中的交叉扩散项   grad_fai_b * kiff * Tb
@@ -248,7 +228,8 @@ void Fvm::cal_gradient(vector<double>& fai) {
 					Point d = f[j] - mesh_eles[i].getcent();
 					bp[i] += (0.0 - fai[i]) / norm(d) * ef * Tb * diff_k[i];
 				}*/
-				//bp[i] += Grad[i] * Tb * diff_k[i];
+				double temp = Grad[i] * Tb * diff_k[i];
+				b[i] += Grad[i] * Tb * diff_k[i];
 			}
 		}
 	}
@@ -340,7 +321,7 @@ void Fvm::init(string cwd) {
 			mesh_eles[i].getcent().getz() * mesh_eles[i].getcent().getz());
 		diff_k[i] = 1.0 / dis;
 
-		bp[i] += mesh_eles[i].getvol() * 1.0 / dis;
+		bp[i] += mesh_eles[i].getvol() * 3.0 / dis;
 	}
 }
 void Fvm::cal_Diff(string cwd) {
@@ -439,7 +420,7 @@ void Fvm::cal_Diff(string cwd) {
 
 	//Write(bp);
 
-	auto res = solver_equtionGaussSeidel(A, bp);
+	auto res = Mesh_cvfem::solver_equtionGaussSeidel(A, bp);
 	
 	string cwd1 = "C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\test_init";
 	string cwd11 = ".txt";
@@ -448,6 +429,8 @@ void Fvm::cal_Diff(string cwd) {
 	cout << endl;
 	cout << "首次迭代已结束" << endl;
 	cout << endl;
+
+	exit(1);
 
 	//迭代求解
 	//step1:插值计算全局梯度
@@ -461,14 +444,14 @@ void Fvm::cal_Diff(string cwd) {
 	while (RES > 1e-3) {
 		num++;
 		cout << "第" << num << "次迭代开始" << endl << endl;
-		cal_gradient1(res);
+		cal_gradient(res, bp);
 		for (int i = 0; i < mesh_eles.size(); i++) {
 			ap[i] = ap[i] / la;
 			bp[i] = bp[i] + (1 - la) * ap[i] / la * res[i];
 			A[i][i] = anb[i][i] + ap[i];
 		}
 		res_old = res;
-		res = solver_equtionGaussSeidel(A, bp);
+		res = Mesh_cvfem::solver_equtionGaussSeidel(A, bp);
 		RES = error_Fvm(res, res_old);
 		cout << "误差为" << RES << endl;
 		Write(res, cwd1 + '_' + to_string(num) + cwd11);
@@ -476,6 +459,63 @@ void Fvm::cal_Diff(string cwd) {
 
 	string cwd2 = "C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\test_res.txt";
 	Write(res, cwd2);
+}
+void Fvm::cal_Convertion(string cwd) {
+	//con = p * vi * Sfi
+}
+vector<double> Fvm::solver_equtionGaussSeidel(vector<vector<double>>& A, vector<double>& b) {
+	vector<double>x;
+	vector<double>x_old;
+	if (A.size() != A[0].size()) {
+		cout << "必须方阵" << endl;
+		return x;
+	}
+#if(1)
+	for (int i = 0; i < A.size(); i++) {
+		if (A[i][i] < 1e-10) {
+			cout << "第" << i << "行对角元素小于0" << endl;
+			//return x;
+		}
+	}
+#endif
+	x.resize(b.size());
+	x_old.resize(b.size());
+	for (int i = 0; i < x.size(); i++) {
+		x[i] = 0.0;
+		x_old[i] = 100.0;
+	}
+	int num = 0;
+	double err = 100.0;
+	while (num < 10000 && err > 1e-4) {
+		x_old = x;
+		for (int i = 0; i < A.size(); i++) {
+			x[i] = 0.0;
+			for (int j = 0; j < A[i].size(); j++) {
+				if (j != i) {
+					x[i] = x[i] - A[i][j] * x[j];
+				}
+			}
+			x[i] += b[i];
+			x[i] /= A[i][i];
+			x[i] = 0.5 * x_old[i] + 0.5 * x[i];
+		}
+		//交叉扩散项的添加
+		if (err < 1e-3) {
+			cal_gradient(x, b);
+			string cwd1 = "C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\test_init";
+			string cwd11 = ".txt";
+			Write(x, cwd1 + to_string(num) + cwd11);
+		}
+		num++;
+		if (num % 10 == 0) {
+			cout << "GaussSeidel迭代次数：" << num << endl;
+			err = error(A, b, x, x_old);
+		}
+	}
+	for (int i = 0; i < x.size(); i++) {
+		if (x[i] < 1e-10) x[i] = 0.0;
+	}
+	return x;
 }
 double Fvm::error_Fvm(vector<double>& res, vector<double>& res_old) {
 	if (res.size() != res_old.size()) {

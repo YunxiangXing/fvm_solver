@@ -73,7 +73,7 @@ public:
 	void cal(string cwd);
 	double error(vector<vector<double>>&, vector<double>&, vector<double>&, vector<double>&);
 	vector<double> solver_equtionJacobi(vector<vector<double>>& A, vector<double>& b);//雅克比迭代
-	vector<double> solver_equtionGaussSeidel(vector<vector<double>>& A, vector<double>& b);//高斯赛德尔迭代
+	virtual vector<double> solver_equtionGaussSeidel(vector<vector<double>>& A, vector<double>& b);//高斯赛德尔迭代
 	vector<double> solver_equtionSOR(vector<vector<double>>& A, vector<double>& b, double w);//SOR迭代
 	void setdiffk(int,double[]);
 	void yanzheng(vector<vector<double>>&, vector<double>&);
