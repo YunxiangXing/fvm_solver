@@ -430,7 +430,6 @@ void Fvm::cal_Diff(string cwd) {
 	cout << "首次迭代已结束" << endl;
 	cout << endl;
 
-	exit(1);
 
 	//迭代求解
 	//step1:插值计算全局梯度
