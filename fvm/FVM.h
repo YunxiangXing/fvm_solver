@@ -18,6 +18,14 @@ namespace FVM {
 		Point data;
 		int id;
 	};
+	struct Msh_Physical_Group {
+		vector<int>eletype;
+		vector<int>phyid;
+		vector<string>phyname;
+		vector<int>newphyid;
+		int num_node = 0;
+		int num_ele = 0;
+	};
 	class Fvm :public Mesh_cvfem {
 	public:
 		void findsharedface();
@@ -29,6 +37,7 @@ namespace FVM {
 		//压力速度耦合算法
 		void simple();
 		void read(string cwd);
+		void marge_msh(vector<string>filepath);
 		double error_Fvm(vector<double>&, vector<double>&);
 		void Write(vector<double>& x, string cwd);
 		inline uint64_t faceid(uint64_t, uint64_t, uint64_t);

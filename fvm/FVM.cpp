@@ -537,3 +537,130 @@ void Fvm::Write(vector<double>& x, string cwd) {
 		file << dis << " " << x[i] << endl;
 	}
 }
+
+
+void Fvm::marge_msh(vector<string>filepath) {
+	int num = filepath.size();
+	ifstream *file = new ifstream[num];
+	ofstream file1("C:\\Users\\yunxiang.xing\\Desktop\\test\\0906.msh");
+	Msh_Physical_Group* PhyGroup = new Msh_Physical_Group[num];
+	for (int i = 0; i < num; i++) {
+		file[i].open(filepath[i]);
+		if (!file[i].is_open()) {
+			cout << "Not found " << filepath[i] << endl;
+			return;
+		}
+	}
+
+	//合并物理分组
+	bool feel = 1;
+	int newid = 1;
+	string line;
+	int all_phy = 0;
+	for (int i = 0; i < num; i++) {
+		line = "";
+		while (line != "$PhysicalNames") {
+			getline(file[i], line);
+		}
+		int nnum;
+		file[i] >> nnum;
+		all_phy += nnum;
+		PhyGroup[i].eletype.resize(nnum);
+		PhyGroup[i].phyid.resize(nnum);
+		PhyGroup[i].phyname.resize(nnum);
+		PhyGroup[i].newphyid.resize(nnum);
+		for (int j = 0; j < nnum; j++) {
+			file[i] >> PhyGroup[i].eletype[j] >> PhyGroup[i].phyid[j] >> PhyGroup[i].phyname[j];
+			PhyGroup[i].newphyid[j] = newid;
+			newid++;
+		}
+	}
+
+	file1 << "$MeshFormat\r\n2.2 0 8\r\n$EndMeshFormat\r\n$PhysicalNames" << endl;
+	file1 << all_phy << endl;
+	for (int i = 0; i < num; i++) {
+		for (int j = 0; j < PhyGroup[i].eletype.size(); j++) {
+			file1 << PhyGroup[i].eletype[j] << " " << PhyGroup[i].newphyid[j] << " " << PhyGroup[i].phyname[j] << endl;
+		}
+	}
+	file1 << "$EndPhysicalNames\r\n$Nodes" << endl;
+
+	//节点
+	int all_node = 0;
+	for (int i = 0; i < num; i++) {
+		line = "";
+		while (line != "$Nodes") {
+			getline(file[i], line);
+		}
+		int nnum;
+		file[i] >> nnum;
+		PhyGroup[i].num_node = all_node;
+		all_node += nnum;
+	}
+	file1 << all_node << endl;
+	for (int i = 0; i < num; i++) {
+		int nnum;
+		if (i < num - 1)
+			nnum = PhyGroup[i + 1].num_node - PhyGroup[i].num_node;
+		else
+			nnum = all_node - PhyGroup[i].num_node;
+		for (int j = 0; j < nnum; j++) {
+			int id;
+			file[i] >> id;
+			getline(file[i], line);
+			file1 << id + PhyGroup[i].num_node << line << endl;
+		}
+	}
+	file1 << "$EndNodes" << endl;
+	file1 << "$Elements" << endl;
+	//单元
+	int all_ele = 0;
+	for (int i = 0; i < num; i++) {
+		line = "";
+		while (line != "$Elements") {
+			getline(file[i], line);
+		}
+		int nnum;
+		file[i] >> nnum;
+		PhyGroup[i].num_ele = all_ele;
+		all_ele += nnum;
+	}
+	file1 << all_ele << endl;
+	for (int i = 0; i < num; i++) {
+		int nnum;
+		if (i < num - 1)
+			nnum = PhyGroup[i + 1].num_ele - PhyGroup[i].num_ele;
+		else
+			nnum = all_ele - PhyGroup[i].num_ele;
+		for (int j = 0; j < nnum; j++) {
+			int id, elet, pnum, phyid,sol_id;
+			file[i] >> id >> elet >> pnum >> phyid >> sol_id;
+			if (pnum != 2) {
+				cout << "Error!";
+				return;
+			}
+			auto cwd = find(PhyGroup[i].phyid.begin(), PhyGroup[i].phyid.end(), phyid);
+			if (cwd == PhyGroup[i].phyid.end()) {
+				cout << "Find error!" << endl;
+				return;
+			}
+			int dist = distance(PhyGroup[i].phyid.begin(), cwd);
+			file1 << id + PhyGroup[i].num_ele << " " << elet << " " << pnum << " " << PhyGroup[i].newphyid[dist] << " " << PhyGroup[i].newphyid[dist] << " ";
+			if (elet == 2) {
+				int node1, node2, node3;
+				file[i] >> node1 >> node2 >> node3;
+				file1 << node1 + PhyGroup[i].num_node << " " << node2 + PhyGroup[i].num_node << " " << node3 + PhyGroup[i].num_node << endl;
+			}
+			else if (elet == 4) {
+				int node1, node2, node3, node4;
+				file[i] >> node1 >> node2 >> node3 >> node4;
+				file1 << node1 + PhyGroup[i].num_node << " " << node2 + PhyGroup[i].num_node << " " << node3 + PhyGroup[i].num_node << " " << node4 + PhyGroup[i].num_node << endl;
+			}
+		}
+	}
+	file1 << "$EndElements" << endl;
+
+
+	delete[] PhyGroup;
+	delete[] file;
+}
