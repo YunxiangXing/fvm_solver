@@ -220,14 +220,16 @@ void Fvm::cal_gradient(vector<double>& fai, vector<double>& b) {
 				Point Tb = Sf[j] - Eb;
 				Point ef = 1.0 / norm(Sf[j]) * Sf[j];
 				//指定边界通过向内差分计算梯度 grad_fai_b
-				/*if (fvm_bj[id[j]] == 1) {
+				//固定边界梯度为0
+				if (fvm_bj[id[j]] == 1) {
 					Point d = f[j] - mesh_eles[i].getcent();
-					bp[i] += (1.0 - fai[i]) / norm(d) * ef * Tb * diff_k[i];
+					bp[i] += 0;// (1.0 - fai[i]) / norm(d) * ef * Tb * diff_k[i];
 				}
 				else if (fvm_bj[id[j]] == 2) {
 					Point d = f[j] - mesh_eles[i].getcent();
-					bp[i] += (0.0 - fai[i]) / norm(d) * ef * Tb * diff_k[i];
-				}*/
+					bp[i] += 0;// (0.0 - fai[i]) / norm(d) * ef * Tb * diff_k[i];
+				}
+				//非固定边界
 				double temp = Grad[i] * Tb * diff_k[i];
 				b[i] += Grad[i] * Tb * diff_k[i];
 			}
@@ -422,7 +424,7 @@ void Fvm::cal_Diff(string cwd) {
 
 	auto res = Mesh_cvfem::solver_equtionGaussSeidel(A, bp);
 	
-	string cwd1 = "C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\test_init";
+	string cwd1 = "C:\\Users\\freedom\\Desktop\\自编写求解器\\fvm_solver\\x64\\Result\\test_init";
 	string cwd11 = ".txt";
 	Write(res, cwd1 + cwd11);
 

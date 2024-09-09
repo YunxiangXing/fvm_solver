@@ -34,13 +34,13 @@ int main(int argc, char* argv[]) {
 	auto z = test.solver_equtionSOR(A, b, 0.7);*/
 
 
-	vector<string>file1;
-	file1.resize(3);
-	file1[0] = "C:\\Users\\yunxiang.xing\\Desktop\\test\\dingzi_model1.msh";
-	file1[1] = "C:\\Users\\yunxiang.xing\\Desktop\\test\\zhuanzi_model1.msh";
-	file1[2] = "C:\\Users\\yunxiang.xing\\Desktop\\test\\zhijia_model.msh";
+	//vector<string>file1;
+	//file1.resize(3);
+	//file1[0] = "C:\\Users\\yunxiang.xing\\Desktop\\test\\dingzi_model1.msh";
+	//file1[1] = "C:\\Users\\yunxiang.xing\\Desktop\\test\\zhuanzi_model1.msh";
+	//file1[2] = "C:\\Users\\yunxiang.xing\\Desktop\\test\\zhijia_model.msh";
 	FVM::Fvm test;
-	test.marge_msh(file1);
-	//test.cal_Diff("C:\\Users\\yunxiang.xing\\Desktop\\LBM\\QtWidgetsApplication1\\x64\\test\\test.rmsh");
+	//test.marge_msh(file1);
+	test.cal_Diff("C:\\Users\\freedom\\Desktop\\×Ô±àÐ´Çó½âÆ÷\\fvm_solver\\reference\\test.rmsh");
 	return 0;
 }
