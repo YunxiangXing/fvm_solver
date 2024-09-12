@@ -34,6 +34,7 @@ namespace FVM {
 		void cal_Convertion(string cwd);
 		void cal_gradient1(vector<double>&, vector<double>&);
 		void cal_gradient(vector<double>&, vector<double>&);
+		void insert_fai(double, uint64_t);
 		//压力速度耦合算法
 		void simple();
 		void read(string cwd);
@@ -53,6 +54,7 @@ namespace FVM {
 		//vector<vector<int>>mesh_bj;//边界三角形网格
 		//vector<Point>mesh_gradient;//单元的梯度
 		map<uint64_t, vector<int>>sharedface;
+		map<uint64_t, double>sharedfai;
 		vector<Point>Grad;
 		vector<double>diff_k;
 
