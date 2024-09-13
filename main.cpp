@@ -42,6 +42,6 @@ int main(int argc, char* argv[]) {
 	FVM::Fvm test;
 	//test.marge_msh(file1);
 	//test.cal_Diff("C:\\Users\\freedom\\Desktop\\×Ô±àÐ´Çó½âÆ÷\\fvm_solver\\reference\\test.rmsh");
-	test.cal_Diff("C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\reference\\test.rmsh");
+	test.cal("C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\reference\\test.rmsh");
 	return 0;
 }

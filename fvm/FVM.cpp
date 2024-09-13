@@ -182,12 +182,12 @@ void Fvm::cal_gradient(vector<double>& fai, vector<double>& b) {
 			else {
 				//边界
 				if (fvm_bj[id[j]] == 1) {
-					grad_fai_c = grad_fai_c + 1.0 * Sf[j];
+					grad_fai_c = grad_fai_c + 2.0 * Sf[j];
 
 					insert_fai(1.0, id[j]);
 				}
 				else if (fvm_bj[id[j]] == 2){
-					grad_fai_c = grad_fai_c + 0.0 * Sf[j];
+					grad_fai_c = grad_fai_c + 1.0 * Sf[j];
 
 					insert_fai(0.0, id[j]);
 				}
@@ -238,8 +238,8 @@ void Fvm::cal_gradient(vector<double>& fai, vector<double>& b) {
 			}
 			else {
 				//边界
-				if (fvm_bj[id[j]] == 1) grad_fai_c = grad_fai_c + 1.0 * Sf[j];
-				else if (fvm_bj[id[j]] == 2) grad_fai_c = grad_fai_c + 0.0 * Sf[j];
+				if (fvm_bj[id[j]] == 1) grad_fai_c = grad_fai_c + 2.0 * Sf[j];
+				else if (fvm_bj[id[j]] == 2) grad_fai_c = grad_fai_c + 1.0 * Sf[j];
 				else grad_fai_c = grad_fai_c + fai[i] * Sf[j];
 			}
 		}
@@ -302,7 +302,7 @@ void Fvm::cal_gradient(vector<double>& fai, vector<double>& b) {
 					Point d = f[j] - mesh_eles[i].getcent();
 					bp[i] += 0;// (0.0 - fai[i]) / norm(d) * ef * Tb * diff_k[i];
 				}
-				//自然边界FluxVb = 0
+				//自然边界/通量边界 FluxVb = 0
 			}
 		}
 	}
@@ -392,9 +392,9 @@ void Fvm::init(string cwd) {
 	for (int i = 0; i < mesh_eles.size(); i++) {
 		double dis = sqrt(mesh_eles[i].getcent().getx() * mesh_eles[i].getcent().getx() +
 			mesh_eles[i].getcent().getz() * mesh_eles[i].getcent().getz());
-		diff_k[i] = 1.0 / dis;
+		diff_k[i] = 1.0;// 1.0 / dis;
 
-		bp[i] += mesh_eles[i].getvol() * 1.0 / dis;
+		//bp[i] += mesh_eles[i].getvol() * 2.0 / dis;
 	}
 }
 void Fvm::cal_Diff(string cwd) {
@@ -428,7 +428,7 @@ void Fvm::cal_Diff(string cwd) {
 					gDiff[j] = diff_k[i] * norm(Eb) / dcb;
 					Point Tb = Sf[j] - Eb;
 					if (fvm_bj[id[j]] == 1) {
-						bp[i] += gDiff[j] * 1.0;
+						bp[i] += gDiff[j] * 2.0;
 
 						/*for (int k = 0; k < Gradelements[i].size(); k++) {
 							anb[i][Gradelements[i][k].id] -= Gradelements[i][k].data * Tb;
@@ -436,7 +436,7 @@ void Fvm::cal_Diff(string cwd) {
 
 					}
 					else { 
-						bp[i] += gDiff[j] * 0.0; 
+						bp[i] += gDiff[j] * 1.0; 
 
 						/*for (int k = 0; k < Gradelements[i].size(); k++) {
 							anb[i][Gradelements[i][k].id] -= Gradelements[i][k].data * Tb;
@@ -480,7 +480,49 @@ void Fvm::cal_Diff(string cwd) {
 		ap[i] += gDiff[0] + gDiff[1] + gDiff[2] + gDiff[3];
 	}
 
+
+}
+void Fvm::cal_Convertion(string cwd) {
+	//con = p * vi * Sfi
+	//upwind
+	//ac = ||mf, 0||, aF = -||-mf, 0||
+	//mf = Sf * V * p
+	vel.clear();
+	vel.resize(mesh_eles.size());
+	for (int i = 0; i < mesh_eles.size(); i++) {
+		vector<Point>Sf = mesh_eles[i].getelementsurfacenormal();
+		uint64_t id[4];
+		id[0] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numC);
+		id[1] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numD);
+		id[2] = faceid(mesh_eles[i].numA, mesh_eles[i].numC, mesh_eles[i].numD);
+		id[3] = faceid(mesh_eles[i].numB, mesh_eles[i].numC, mesh_eles[i].numD);
+		Point f[4];
+		f[0] = mesh_eles[i].getface_ABC();
+		f[1] = mesh_eles[i].getface_ABD();
+		f[2] = mesh_eles[i].getface_ACD();
+		f[3] = mesh_eles[i].getface_BCD();
+		//step1: 判断是内部面还是外部面
+		double gDiff[4] = { 0.0,0.0,0.0,0.0 };
+		for (int j = 0; j < 4; j++) {
+			int share;
+			if (sharedface[id[j]][0] != i) share = sharedface[id[j]][0];
+			else share = sharedface[id[j]][1];
+			Point v;
+			double r = f[j].getx() * f[j].getx() + f[j].getz() * f[j].getz();
+			double vx = f[j].getx() / r;
+			double vz = f[j].getz() / r;
+			v.setx(vx);
+			v.setz(vz);
+			double mf = Sf[j] * v;
+			anb[i][share] += -max(-mf, 0);
+			ap[i] += max(mf, 0);
+		}
+	}
+}
+void Fvm::cal(string cwd) {
 	//AX = b
+	this->cal_Diff(cwd);
+	this->cal_Convertion(cwd);
 	for (int i = 0; i < ap.size(); i++) {
 		for (int j = 0; j < ap.size(); j++) {
 			if (i == j) {
@@ -495,7 +537,7 @@ void Fvm::cal_Diff(string cwd) {
 	//Write(bp);
 
 	auto res = Mesh_cvfem::solver_equtionGaussSeidel(A, bp);
-	
+
 	//string cwd1 = "C:\\Users\\freedom\\Desktop\\自编写求解器\\fvm_solver\\x64\\Result\\test_init";
 	string cwd1 = "C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\RES\\test_init";
 	string cwd11 = ".txt";
@@ -514,7 +556,7 @@ void Fvm::cal_Diff(string cwd) {
 	int num = 0;
 	double RES = 100.0;
 
-	double la = 0.95;
+	double la = 1.0;
 	while (RES > 1e-3) {
 		num++;
 		cout << "第" << num << "次迭代开始" << endl << endl;
@@ -533,9 +575,6 @@ void Fvm::cal_Diff(string cwd) {
 
 	string cwd2 = "C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\test_res.txt";
 	Write(res, cwd2);
-}
-void Fvm::cal_Convertion(string cwd) {
-	//con = p * vi * Sfi
 }
 vector<double> Fvm::solver_equtionGaussSeidel(vector<vector<double>>& A, vector<double>& b) {
 	vector<double>x;
@@ -599,7 +638,7 @@ double Fvm::error_Fvm(vector<double>& res, vector<double>& res_old) {
 	double RES = 0.0;
 	for (int i = 0; i < res.size(); i++) {
 		double temp = abs(res[i] - res_old[i]);
-		RES += temp;
+		if(RES < temp) RES = temp;
 	}
 	return RES;
 }

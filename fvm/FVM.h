@@ -30,6 +30,7 @@ namespace FVM {
 	public:
 		void findsharedface();
 		void init(string cwd);
+		void cal(string cwd);
 		void cal_Diff(string cwd);
 		void cal_Convertion(string cwd);
 		void cal_gradient1(vector<double>&, vector<double>&);
