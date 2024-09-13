@@ -778,3 +778,13 @@ void Fvm::marge_msh(vector<string>filepath) {
 	delete[] PhyGroup;
 	delete[] file;
 }
+
+void Fvm::simple() {
+	//step1: solver->vf
+	//step2: update->mf
+	//step3: solver->p'
+	//step4: update->vc, pc, mf
+	//step5: ->step1
+	//step6: t = t + dt
+	//step7: 
+}
