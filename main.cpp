@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 	//file1[2] = "C:\\Users\\yunxiang.xing\\Desktop\\test\\zhijia_model.msh";
 	FVM::Fvm test;
 	//test.marge_msh(file1);
-	//test.cal_Diff("C:\\Users\\freedom\\Desktop\\自编写求解器\\fvm_solver\\reference\\test.rmsh");
-	test.cal("C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\reference\\test.rmsh");
+	test.cal("C:\\Users\\freedom\\Desktop\\自编写求解器\\fvm_solver\\reference\\test.rmsh");
+	//test.cal("C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\reference\\test.rmsh");
 	return 0;
 }

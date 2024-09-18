@@ -22,129 +22,6 @@ void Fvm::insert_fai(double fai_fj, uint64_t id) {
 void Fvm::cal_gradient1(vector<double>& fai, vector<double>& b) {
 	//step1:计算全局梯度使用现有的fai
 	Grad.resize(mesh_eles.size());
-	for (int i = 0; i < mesh_eles.size(); i++) {
-		vector<Point>Sf = mesh_eles[i].getelementsurfacenormal();
-		uint64_t id[4];
-		id[0] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numC);
-		id[1] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numD);
-		id[2] = faceid(mesh_eles[i].numA, mesh_eles[i].numC, mesh_eles[i].numD);
-		id[3] = faceid(mesh_eles[i].numB, mesh_eles[i].numC, mesh_eles[i].numD);
-		Point f[4];
-		f[0] = mesh_eles[i].getface_ABC();
-		f[1] = mesh_eles[i].getface_ABD();
-		f[2] = mesh_eles[i].getface_ACD();
-		f[3] = mesh_eles[i].getface_BCD();
-		//step1: 判断是内部面还是外部面
-		double gDiff[4] = { 0.0,0.0,0.0,0.0 };
-		Point grad_fai_c;
-		for (int j = 0; j < 4; j++) {
-			if (sharedface[id[j]][1] != -1) {
-				int share;
-				if (sharedface[id[j]][0] != i) share = sharedface[id[j]][0];
-				else share = sharedface[id[j]][1];
-				//gradfai_f * Tf
-				//gradfai_f = g * fai_c + (1 - g) * fai_F
-				Point dCfi, dfiF;
-				dCfi = f[j] - mesh_eles[i].getcent();
-				dfiF = mesh_eles[share].getcent() - f[j];
-				float gfi = norm(dfiF) / (norm(dCfi) + norm(dfiF));
-				//fai_fj
-				double fai_fj = gfi * fai[i] + (1.0 - gfi) * fai[share];
-				grad_fai_c = grad_fai_c + fai_fj * Sf[j];
-			}
-			else {
-				//边界
-				if (fvm_bj[id[j]] == 1) grad_fai_c = grad_fai_c + 1.0 * Sf[j];
-				else if (fvm_bj[id[j]] == 2) grad_fai_c = grad_fai_c + 0.0 * Sf[j];
-				else grad_fai_c = grad_fai_c + fai[i] * Sf[j];
-			}
-		}
-		//grad_faiC
-		grad_fai_c = 1.0 / mesh_eles[i].getvol() * grad_fai_c;
-		Grad[i] = grad_fai_c;
-	}
-
-	//step2:update
-	vector<Point> Grad_new;
-	Grad_new.resize(mesh_eles.size());
-	for (int i = 0; i < mesh_eles.size(); i++) {
-		vector<Point>Sf = mesh_eles[i].getelementsurfacenormal();
-		uint64_t id[4];
-		id[0] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numC);
-		id[1] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numD);
-		id[2] = faceid(mesh_eles[i].numA, mesh_eles[i].numC, mesh_eles[i].numD);
-		id[3] = faceid(mesh_eles[i].numB, mesh_eles[i].numC, mesh_eles[i].numD);
-		Point f[4];
-		f[0] = mesh_eles[i].getface_ABC();
-		f[1] = mesh_eles[i].getface_ABD();
-		f[2] = mesh_eles[i].getface_ACD();
-		f[3] = mesh_eles[i].getface_BCD();
-		for (int j = 0; j < 4; j++) {
-			if (sharedface[id[j]][1] != -1) {
-				int share;
-				if (sharedface[id[j]][0] != i) share = sharedface[id[j]][0];
-				else share = sharedface[id[j]][1];
-				Point dCfi, dfiF;
-				dCfi = f[j] - mesh_eles[i].getcent();
-				dfiF = mesh_eles[share].getcent() - f[j];
-				float gfi = norm(dfiF) / (norm(dCfi) + norm(dfiF));
-				double fai_f = gfi * fai[i] + (1.0 - gfi) * fai[share];
-				double fai_fnew = fai_f + gfi * Grad[i] * (f[j] - mesh_eles[i].getcent()) + (1.0 - gfi) * Grad[share] * (f[j] - mesh_eles[share].getcent());
-				Grad_new[i] = Grad_new[i] + fai_fnew * Sf[j];
-			}
-			else {
-				//边界
-				if (fvm_bj[id[j]] == 1) Grad_new[i] = Grad_new[i] + 1.0 * Sf[j];
-				else if (fvm_bj[id[j]] == 2) Grad_new[i] = Grad_new[i] + 0.0 * Sf[j];
-				else Grad_new[i] = Grad_new[i] + fai[i] * Sf[j];
-			}
-		
-		}
-		Grad_new[i] = 1.0 / mesh_eles[i].getvol() * Grad_new[i];
-	}
-
-	Grad = move(Grad_new);
-
-
-	for (int i = 0; i < mesh_eles.size(); i++) {
-		vector<Point>Sf = mesh_eles[i].getelementsurfacenormal();
-		uint64_t id[4];
-		id[0] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numC);
-		id[1] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numD);
-		id[2] = faceid(mesh_eles[i].numA, mesh_eles[i].numC, mesh_eles[i].numD);
-		id[3] = faceid(mesh_eles[i].numB, mesh_eles[i].numC, mesh_eles[i].numD);
-		Point f[4];
-		f[0] = mesh_eles[i].getface_ABC();
-		f[1] = mesh_eles[i].getface_ABD();
-		f[2] = mesh_eles[i].getface_ACD();
-		f[3] = mesh_eles[i].getface_BCD();
-		//step1: 判断是内部面还是外部面
-		double gDiff[4] = { 0.0,0.0,0.0,0.0 };
-		for (int j = 0; j < 4; j++) {
-			if (sharedface[id[j]][1] != -1) {
-				int share;
-				if (sharedface[id[j]][0] != i) share = sharedface[id[j]][0];
-				else share = sharedface[id[j]][1];
-				Point CF = mesh_eles[share].getcent() - mesh_eles[i].getcent();
-				double Dcf = norm(CF);
-				Point ecf = 1.0 / Dcf * CF;
-				Point Ef = (Sf[j] * Sf[j]) / (ecf * Sf[j]) * ecf;
-				Point Tf;
-				Point dCfi, dfiF;
-				dCfi = f[j] - mesh_eles[i].getcent();
-				dfiF = mesh_eles[share].getcent() - f[j];
-				float gfi = norm(dfiF) / (norm(dCfi) + norm(dfiF));
-				//fai_fj
-				Point grad_fai_fj = gfi * Grad[i] + (1.0 - gfi) * Grad[share];
-				Tf = Sf[j] - Ef;
-				b[i] += grad_fai_fj * Tf * (gfi * diff_k[i] + (1.0 - gfi) * diff_k[share]);
-			}
-		}
-	}
-}
-void Fvm::cal_gradient(vector<double>& fai, vector<double>& b) {
-	//step1:计算全局梯度使用现有的fai
-	Grad.resize(mesh_eles.size());
 	sharedfai.clear();
 	for (int i = 0; i < mesh_eles.size(); i++) {
 		vector<Point>Sf = mesh_eles[i].getelementsurfacenormal();
@@ -181,13 +58,13 @@ void Fvm::cal_gradient(vector<double>& fai, vector<double>& b) {
 			}
 			else {
 				//边界
-				if (fvm_bj[id[j]] == 1) {
-					grad_fai_c = grad_fai_c + 2.0 * Sf[j];
+				if (fvm_bj[id[j]] == birin) {
+					grad_fai_c = grad_fai_c + 1.0 * Sf[j];
 
 					insert_fai(1.0, id[j]);
 				}
-				else if (fvm_bj[id[j]] == 2){
-					grad_fai_c = grad_fai_c + 1.0 * Sf[j];
+				else if (fvm_bj[id[j]] == birout) {
+					grad_fai_c = grad_fai_c + 0.0 * Sf[j];
 
 					insert_fai(0.0, id[j]);
 				}
@@ -238,8 +115,200 @@ void Fvm::cal_gradient(vector<double>& fai, vector<double>& b) {
 			}
 			else {
 				//边界
-				if (fvm_bj[id[j]] == 1) grad_fai_c = grad_fai_c + 2.0 * Sf[j];
-				else if (fvm_bj[id[j]] == 2) grad_fai_c = grad_fai_c + 1.0 * Sf[j];
+				if (fvm_bj[id[j]] == birin) grad_fai_c = grad_fai_c + 1.0 * Sf[j];
+				else if (fvm_bj[id[j]] == birout) grad_fai_c = grad_fai_c + 0.0 * Sf[j];
+				else grad_fai_c = grad_fai_c + fai[i] * Sf[j];
+			}
+		}
+		//grad_faiC
+		grad_fai_c = 1.0 / mesh_eles[i].getvol() * grad_fai_c;
+		Grad_new[i] = grad_fai_c;
+	}
+
+	Grad = move(Grad_new);
+	Grad_new.clear();
+	int nummm = 0;
+	for (int i = 0; i < mesh_eles.size(); i++) {
+		vector<Point>Sf = mesh_eles[i].getelementsurfacenormal();
+		uint64_t id[4];
+		id[0] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numC);
+		id[1] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numD);
+		id[2] = faceid(mesh_eles[i].numA, mesh_eles[i].numC, mesh_eles[i].numD);
+		id[3] = faceid(mesh_eles[i].numB, mesh_eles[i].numC, mesh_eles[i].numD);
+		Point f[4];
+		f[0] = mesh_eles[i].getface_ABC();
+		f[1] = mesh_eles[i].getface_ABD();
+		f[2] = mesh_eles[i].getface_ACD();
+		f[3] = mesh_eles[i].getface_BCD();
+		//step1: 判断是内部面还是外部面
+		double gDiff[4] = { 0.0,0.0,0.0,0.0 };
+		for (int j = 0; j < 4; j++) {
+			if (sharedface[id[j]][1] != -1) {
+				int share;
+				if (sharedface[id[j]][0] != i) share = sharedface[id[j]][0];
+				else share = sharedface[id[j]][1];
+				Point CF = mesh_eles[share].getcent() - mesh_eles[i].getcent();
+				double Dcf = norm(CF);
+				Point ecf = 1.0 / Dcf * CF;
+				Point Ef = (Sf[j] * Sf[j]) / (ecf * Sf[j]) * ecf;
+				Point Tf;
+				Point dCfi, dfiF;
+				dCfi = f[j] - mesh_eles[i].getcent();
+				dfiF = mesh_eles[share].getcent() - f[j];
+				float gfi = norm(dfiF) / (norm(dCfi) + norm(dfiF));
+				//fai_fj
+				Point grad_fai_fj = gfi * Grad[i] + (1.0 - gfi) * Grad[share];
+				Tf = Sf[j] - Ef;
+				b[i] += grad_fai_fj * Tf * (gfi * diff_k[i] + (1.0 - gfi) * diff_k[share]);
+			}
+			else {
+				//边界条件中的交叉扩散项   grad_fai_b * kiff * Tb
+				Point ecb = f[j] - mesh_eles[i].getcent();
+				double dcb = norm(ecb);
+				ecb = 1.0 / dcb * ecb;
+				Point Eb = (Sf[j] * Sf[j]) / (ecb * Sf[j]) * ecb;
+				gDiff[j] = norm(Eb) / dcb;
+				Point Tb = Sf[j] - Eb;
+				//Point ef = 1.0 / norm(Sf[j]) * Sf[j];
+				//指定边界通过向内差分计算梯度 grad_fai_b
+				//固定边界梯度为0
+#if(1)
+				if (fvm_bj[id[j]] == 1) {
+					//Point d = f[j] - mesh_eles[i].getcent();
+					bp[i] += 0;// Grad[i] * Tb* diff_k[i];// (1.0 - fai[i]) / norm(d) * ef * Tb * diff_k[i];
+				}
+				else if (fvm_bj[id[j]] == 2) {
+					//Point d = f[j] - mesh_eles[i].getcent();
+					bp[i] += 0;// Grad[i] * Tb* diff_k[i];// (0.0 - fai[i]) / norm(d) * ef * Tb * diff_k[i];
+				}
+				else if (fvm_bj[id[j]] == 3) {
+					double temp = 0.0;
+					Grad[i].setz(temp);
+					bp[i] += Grad[i] * Tb * diff_k[i];
+				}
+				else if (fvm_bj[id[j]] == 4) {
+					double temp = 0.0;
+					Grad[i].setx(temp);
+					bp[i] += Grad[i] * Tb * diff_k[i];
+				}
+				else if (fvm_bj[id[j]] == 5) {
+					double temp = 0.0;
+					Grad[i].sety(temp);
+					bp[i] += Grad[i] * Tb * diff_k[i];
+				}
+				else if (fvm_bj[id[j]] == 6) {
+					double temp = 0.0;
+					Grad[i].sety(temp);
+					bp[i] += Grad[i] * Tb * diff_k[i];
+				}
+				else {
+					cout << "Error!";
+				}
+#endif
+				//自然边界/通量边界 FluxVb = 0
+			}
+		}
+	}
+	cout << nummm << endl;
+}
+void Fvm::cal_gradient(vector<double>& fai, vector<double>& b) {
+	//step1:计算全局梯度使用现有的fai
+	Grad.resize(mesh_eles.size());
+	sharedfai.clear();
+	for (int i = 0; i < mesh_eles.size(); i++) {
+		vector<Point>Sf = mesh_eles[i].getelementsurfacenormal();
+		uint64_t id[4];
+		id[0] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numC);
+		id[1] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numD);
+		id[2] = faceid(mesh_eles[i].numA, mesh_eles[i].numC, mesh_eles[i].numD);
+		id[3] = faceid(mesh_eles[i].numB, mesh_eles[i].numC, mesh_eles[i].numD);
+		Point f[4];
+		f[0] = mesh_eles[i].getface_ABC();
+		f[1] = mesh_eles[i].getface_ABD();
+		f[2] = mesh_eles[i].getface_ACD();
+		f[3] = mesh_eles[i].getface_BCD();
+		//step1: 判断是内部面还是外部面
+		double gDiff[4] = { 0.0,0.0,0.0,0.0 };
+		Point grad_fai_c;
+		for (int j = 0; j < 4; j++) {
+			if (sharedface[id[j]][1] != -1) {
+				int share;
+				if (sharedface[id[j]][0] != i) share = sharedface[id[j]][0];
+				else share = sharedface[id[j]][1];
+				//gradfai_f * Tf
+				//gradfai_f = g * fai_c + (1 - g) * fai_F
+
+				Point dCfi, dfiF;
+				dCfi = f[j] - mesh_eles[i].getcent();
+				dfiF = mesh_eles[share].getcent() - f[j];
+				float gfi = norm(dfiF) / (norm(dCfi) + norm(dfiF));
+				//fai_fj
+				double fai_fj = gfi * fai[i] + (1.0 - gfi) * fai[share];
+				grad_fai_c = grad_fai_c + fai_fj * Sf[j];
+
+				insert_fai(fai_fj, id[j]);
+			}
+			else {
+				//边界
+				if (fvm_bj[id[j]] == 1) {
+					grad_fai_c = grad_fai_c + 1.0 * Sf[j];
+
+					insert_fai(1.0, id[j]);
+				}
+				else if (fvm_bj[id[j]] == 2){
+					grad_fai_c = grad_fai_c + 0.0 * Sf[j];
+
+					insert_fai(0.0, id[j]);
+				}
+				else {
+					grad_fai_c = grad_fai_c + fai[i] * Sf[j];
+
+					insert_fai(fai[i], id[j]);
+				}
+			}
+		}
+		//grad_faiC
+		grad_fai_c = 1.0 / mesh_eles[i].getvol() * grad_fai_c;
+		Grad[i] = grad_fai_c;
+	}
+
+	//update
+	vector<Point>Grad_new;
+	Grad_new.resize(Grad.size());
+	for (int i = 0; i < mesh_eles.size(); i++) {
+		vector<Point>Sf = mesh_eles[i].getelementsurfacenormal();
+		uint64_t id[4];
+		id[0] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numC);
+		id[1] = faceid(mesh_eles[i].numA, mesh_eles[i].numB, mesh_eles[i].numD);
+		id[2] = faceid(mesh_eles[i].numA, mesh_eles[i].numC, mesh_eles[i].numD);
+		id[3] = faceid(mesh_eles[i].numB, mesh_eles[i].numC, mesh_eles[i].numD);
+		Point f[4];
+		f[0] = mesh_eles[i].getface_ABC();
+		f[1] = mesh_eles[i].getface_ABD();
+		f[2] = mesh_eles[i].getface_ACD();
+		f[3] = mesh_eles[i].getface_BCD();
+		//step1: 判断是内部面还是外部面
+		double gDiff[4] = { 0.0,0.0,0.0,0.0 };
+		Point grad_fai_c;
+		for (int j = 0; j < 4; j++) {
+			if (sharedface[id[j]][1] != -1) {
+				int share;
+				if (sharedface[id[j]][0] != i) share = sharedface[id[j]][0];
+				else share = sharedface[id[j]][1];
+				//gradfai_f * Tf
+				//gradfai_f = g * fai_c + (1 - g) * fai_F
+				Point dCfi, dfiF;
+				dCfi = f[j] - mesh_eles[i].getcent();
+				dfiF = mesh_eles[share].getcent() - f[j];
+				float gfi = norm(dfiF) / (norm(dCfi) + norm(dfiF));
+				//fai_fj
+				double fai_new = sharedfai[id[j]] + gfi * Grad[i] * (f[j] - mesh_eles[i].getcent()) + (1.0 - gfi) * Grad[share] * (f[j] - mesh_eles[share].getcent());
+				grad_fai_c = grad_fai_c + fai_new * Sf[j];
+			}
+			else {
+				//边界
+				if (fvm_bj[id[j]] == 1) grad_fai_c = grad_fai_c + 1.0 * Sf[j];
+				else if (fvm_bj[id[j]] == 2) grad_fai_c = grad_fai_c + 0.0 * Sf[j];
 				else grad_fai_c = grad_fai_c + fai[i] * Sf[j];
 			}
 		}
@@ -372,9 +441,11 @@ void Fvm::init(string cwd) {
 	A.clear();
 	A.resize(ap.size());
 	bp.resize(ap.size());
+	res.resize(ap.size());
 	for (int i = 0; i < ap.size(); i++) {
 		ap[i] = 0.0;
 		bp[i] = 0.0;
+		res[i] = 0.0;
 		anb[i].resize(ap.size());
 		A[i].resize(ap.size());
 		for (int j = 0; j < ap.size(); j++) {
@@ -420,15 +491,15 @@ void Fvm::cal_Diff(string cwd) {
 		for (int j = 0; j < 4; j++) {
 			if (sharedface[id[j]][1] == -1) {
 				//边界条件 id[j] 固定边界
-				if (fvm_bj[id[j]] == 1 || fvm_bj[id[j]] == 2) {
+				if (fvm_bj[id[j]] == birin || fvm_bj[id[j]] == birout) {
 					Point ecb = f[j] - mesh_eles[i].getcent();
 					double dcb = norm(ecb);
 					ecb = 1.0 / dcb * ecb;
 					Point Eb = (Sf[j] * Sf[j]) / (ecb * Sf[j]) * ecb;
 					gDiff[j] = diff_k[i] * norm(Eb) / dcb;
 					Point Tb = Sf[j] - Eb;
-					if (fvm_bj[id[j]] == 1) {
-						bp[i] += gDiff[j] * 2.0;
+					if (fvm_bj[id[j]] == birin) {
+						bp[i] += gDiff[j] * 1.0;
 
 						/*for (int k = 0; k < Gradelements[i].size(); k++) {
 							anb[i][Gradelements[i][k].id] -= Gradelements[i][k].data * Tb;
@@ -436,7 +507,7 @@ void Fvm::cal_Diff(string cwd) {
 
 					}
 					else { 
-						bp[i] += gDiff[j] * 1.0; 
+						bp[i] += gDiff[j] * 0.0; 
 
 						/*for (int k = 0; k < Gradelements[i].size(); k++) {
 							anb[i][Gradelements[i][k].id] -= Gradelements[i][k].data * Tb;
@@ -452,6 +523,8 @@ void Fvm::cal_Diff(string cwd) {
 				Point CF = mesh_eles[share].getcent() - mesh_eles[i].getcent();
 				double Dcf = norm(CF);
 				Point ecf = 1.0 / Dcf * CF;
+				if (abs(norm(ecf) - 1) > 1e-5)
+					cout << "!!" << endl;
 				Point Ef = (Sf[j] * Sf[j]) / (ecf * Sf[j]) * ecf;
 				gDiff[j] = norm(Ef) / Dcf;
 				//gradfai_f * Tf
@@ -522,7 +595,7 @@ void Fvm::cal_Convertion(string cwd) {
 void Fvm::cal(string cwd) {
 	//AX = b
 	this->cal_Diff(cwd);
-	this->cal_Convertion(cwd);
+	//this->cal_Convertion(cwd);
 	for (int i = 0; i < ap.size(); i++) {
 		for (int j = 0; j < ap.size(); j++) {
 			if (i == j) {
@@ -536,10 +609,10 @@ void Fvm::cal(string cwd) {
 
 	//Write(bp);
 
-	auto res = Mesh_cvfem::solver_equtionGaussSeidel(A, bp);
+	res = solver_equtionGaussSeidel(A, bp);
 
-	//string cwd1 = "C:\\Users\\freedom\\Desktop\\自编写求解器\\fvm_solver\\x64\\Result\\test_init";
-	string cwd1 = "C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\RES\\test_init";
+	string cwd1 = "C:\\Users\\freedom\\Desktop\\自编写求解器\\fvm_solver\\RES\\test_init";
+	//string cwd1 = "C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\RES\\test_init";
 	string cwd11 = ".txt";
 	Write(res, cwd1 + cwd11);
 
@@ -560,14 +633,14 @@ void Fvm::cal(string cwd) {
 	while (RES > 1e-3) {
 		num++;
 		cout << "第" << num << "次迭代开始" << endl << endl;
-		cal_gradient(res, bp);
+		cal_gradient1(res, bp);
 		for (int i = 0; i < mesh_eles.size(); i++) {
 			ap[i] = ap[i] / la;
 			bp[i] = bp[i] + (1 - la) * ap[i] / la * res[i];
 			A[i][i] = anb[i][i] + ap[i];
 		}
 		res_old = res;
-		res = Mesh_cvfem::solver_equtionGaussSeidel(A, bp);
+		res = solver_equtionGaussSeidel(A, bp);
 		RES = error_Fvm(res, res_old);
 		cout << "误差为" << RES << endl;
 		Write(res, cwd1 + '_' + to_string(num) + cwd11);
@@ -577,6 +650,8 @@ void Fvm::cal(string cwd) {
 	Write(res, cwd2);
 }
 vector<double> Fvm::solver_equtionGaussSeidel(vector<vector<double>>& A, vector<double>& b) {
+	//1.调整矩阵形式x1=...,,,x2=....
+	//2.初始值0
 	vector<double>x;
 	vector<double>x_old;
 	if (A.size() != A[0].size()) {
@@ -585,7 +660,7 @@ vector<double> Fvm::solver_equtionGaussSeidel(vector<vector<double>>& A, vector<
 	}
 #if(1)
 	for (int i = 0; i < A.size(); i++) {
-		if (A[i][i] < 1e-10) {
+		if (A[i][i] < Min) {
 			cout << "第" << i << "行对角元素小于0" << endl;
 			//return x;
 		}
@@ -594,7 +669,7 @@ vector<double> Fvm::solver_equtionGaussSeidel(vector<vector<double>>& A, vector<
 	x.resize(b.size());
 	x_old.resize(b.size());
 	for (int i = 0; i < x.size(); i++) {
-		x[i] = 0.0;
+		x[i] = res[i];
 		x_old[i] = 100.0;
 	}
 	int num = 0;
@@ -610,14 +685,6 @@ vector<double> Fvm::solver_equtionGaussSeidel(vector<vector<double>>& A, vector<
 			}
 			x[i] += b[i];
 			x[i] /= A[i][i];
-			x[i] = 0.5 * x_old[i] + 0.5 * x[i];
-		}
-		//交叉扩散项的添加
-		if (err < 1e-3) {
-			cal_gradient(x, b);
-			string cwd1 = "C:\\Users\\yunxiang.xing\\Desktop\\LBM\\fvm_solver\\test_init";
-			string cwd11 = ".txt";
-			Write(x, cwd1 + to_string(num) + cwd11);
 		}
 		num++;
 		if (num % 10 == 0) {
@@ -626,7 +693,7 @@ vector<double> Fvm::solver_equtionGaussSeidel(vector<vector<double>>& A, vector<
 		}
 	}
 	for (int i = 0; i < x.size(); i++) {
-		if (x[i] < 1e-10) x[i] = 0.0;
+		if (x[i] < Min) x[i] = 0.0;
 	}
 	return x;
 }

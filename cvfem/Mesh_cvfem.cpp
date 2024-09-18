@@ -1,5 +1,5 @@
 #include"Mesh_cvfem.h"
-#define Min 1e-10
+
 Point cross(Point a, Point b) {
 	double x, y, z;
 	x = a.gety() * b.getz() - a.getz() * b.gety();

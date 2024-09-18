@@ -48,6 +48,8 @@ namespace FVM {
 	private:
 		vector<double> solver_equtionGaussSeidel(vector<vector<double>>& A, vector<double>& b) override;//高斯赛德尔迭代
 		void pgrad(Point&, int, int, Point&, Point&, double);
+		int birin = 1;
+		int birout = 2;
 		//vector<Element_cvfem>mesh_eles;//单元
 		//vector<Point>mesh_nodes;//节点
 		//vector<vector<int>>mesh_nei;//邻居
@@ -63,6 +65,7 @@ namespace FVM {
 		vector<gradvalue>grad;
 
 		map<uint64_t, int>fvm_bj;
+		vector<double>res;
 	};
 }
 #endif
