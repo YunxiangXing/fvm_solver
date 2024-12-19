@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{66ADCFE7-D976-305B-B461-A197A95AB16D}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>all_examples</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0/doc/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0 -BC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build --check-stamp-file C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build/doc/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\Doxyfile.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_footer.html.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_header.html.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_layout.xml.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\unsupported\doc\eigendoxy_layout.xml.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0/doc/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0 -BC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build --check-stamp-file C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build/doc/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\Doxyfile.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_footer.html.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_header.html.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_layout.xml.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\unsupported\doc\eigendoxy_layout.xml.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0/doc/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0 -BC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build --check-stamp-file C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build/doc/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\Doxyfile.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_footer.html.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_header.html.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_layout.xml.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\unsupported\doc\eigendoxy_layout.xml.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0/doc/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0 -BC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build --check-stamp-file C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build/doc/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\Doxyfile.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_footer.html.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_header.html.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\eigendoxy_layout.xml.in;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\unsupported\doc\eigendoxy_layout.xml.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\ZERO_CHECK.vcxproj">
+      <Project>{23DA7972-A893-3416-82FE-F4BD8BD7BCD4}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\CustomizingEigen_Inheritance.vcxproj">
+      <Project>{ECB0455D-3446-3192-B1EA-EFE1DEDC154D}</Project>
+      <Name>CustomizingEigen_Inheritance</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Cwise_erf.vcxproj">
+      <Project>{3A4AAF56-547D-339E-8761-D1740325E45C}</Project>
+      <Name>Cwise_erf</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Cwise_erfc.vcxproj">
+      <Project>{A8D36ECF-CB7C-3168-A705-FF834F274FE8}</Project>
+      <Name>Cwise_erfc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Cwise_lgamma.vcxproj">
+      <Project>{6A6B4D6E-E042-3741-BFCE-07D2E5689C81}</Project>
+      <Name>Cwise_lgamma</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\DenseBase_middleCols_int.vcxproj">
+      <Project>{485DD9C1-4612-302D-A99D-3E71D3C7C0D3}</Project>
+      <Name>DenseBase_middleCols_int</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\DenseBase_middleRows_int.vcxproj">
+      <Project>{9679EFE6-F482-3063-8A97-D1DD2EF89519}</Project>
+      <Name>DenseBase_middleRows_int</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\DenseBase_template_int_middleCols.vcxproj">
+      <Project>{01507385-CB35-3ACB-B274-9456EE71953F}</Project>
+      <Name>DenseBase_template_int_middleCols</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\DenseBase_template_int_middleRows.vcxproj">
+      <Project>{6158B716-E7DB-3819-8311-C0E0EDC98561}</Project>
+      <Name>DenseBase_template_int_middleRows</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\QuickStart_example.vcxproj">
+      <Project>{D97E2B5D-E8F5-346F-A1FD-AD3588C98073}</Project>
+      <Name>QuickStart_example</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\QuickStart_example2_dynamic.vcxproj">
+      <Project>{7C812D70-294A-3160-8233-7E34038B3AEE}</Project>
+      <Name>QuickStart_example2_dynamic</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\QuickStart_example2_fixed.vcxproj">
+      <Project>{92777FAD-543A-3580-9AD5-75CA8AB76465}</Project>
+      <Name>QuickStart_example2_fixed</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TemplateKeyword_flexible.vcxproj">
+      <Project>{D9344D2A-5984-356A-9024-A386BDAB980A}</Project>
+      <Name>TemplateKeyword_flexible</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TemplateKeyword_simple.vcxproj">
+      <Project>{7A80FD3A-5477-3744-9585-117CA113E5A8}</Project>
+      <Name>TemplateKeyword_simple</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TutorialInplaceLU.vcxproj">
+      <Project>{3D75C26D-39B5-3669-842B-E6C47AECA4BA}</Project>
+      <Name>TutorialInplaceLU</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TutorialLinAlgComputeTwice.vcxproj">
+      <Project>{6E7A1E8A-A46C-32C3-AD6E-514DF886B7D4}</Project>
+      <Name>TutorialLinAlgComputeTwice</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TutorialLinAlgExComputeSolveError.vcxproj">
+      <Project>{06ACFB03-4528-33A1-9093-7F4E9046B506}</Project>
+      <Name>TutorialLinAlgExComputeSolveError</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TutorialLinAlgExSolveColPivHouseholderQR.vcxproj">
+      <Project>{A76F13E3-2D34-3ADE-9F5E-D2797401066A}</Project>
+      <Name>TutorialLinAlgExSolveColPivHouseholderQR</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TutorialLinAlgExSolveLDLT.vcxproj">
+      <Project>{AD2EF350-3E9E-3063-BA68-1C7F31518CC7}</Project>
+      <Name>TutorialLinAlgExSolveLDLT</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TutorialLinAlgInverseDeterminant.vcxproj">
+      <Project>{7F7E1A5B-3F78-3EBC-AFEC-F32067F4BD98}</Project>
+      <Name>TutorialLinAlgInverseDeterminant</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TutorialLinAlgRankRevealing.vcxproj">
+      <Project>{4C5925C8-0544-3E21-A126-7D09928E69B9}</Project>
+      <Name>TutorialLinAlgRankRevealing</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TutorialLinAlgSVDSolve.vcxproj">
+      <Project>{04115DD0-2A44-34EA-BC73-41906A968F7B}</Project>
+      <Name>TutorialLinAlgSVDSolve</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TutorialLinAlgSelfAdjointEigenSolver.vcxproj">
+      <Project>{16DFACE1-75BB-39D6-8ECB-38446E308215}</Project>
+      <Name>TutorialLinAlgSelfAdjointEigenSolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\TutorialLinAlgSetThreshold.vcxproj">
+      <Project>{FACBB542-CA07-3525-8BD2-001C7CCA2343}</Project>
+      <Name>TutorialLinAlgSetThreshold</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ArrayClass_accessors.vcxproj">
+      <Project>{5F6A94E8-0F58-38AA-BDE2-BD4699C8BF30}</Project>
+      <Name>Tutorial_ArrayClass_accessors</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ArrayClass_addition.vcxproj">
+      <Project>{8C349640-3AB2-3C2F-A6C6-DDBE9EF4BD75}</Project>
+      <Name>Tutorial_ArrayClass_addition</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ArrayClass_cwise_other.vcxproj">
+      <Project>{17314E42-6F20-360F-905D-E580D9C2D156}</Project>
+      <Name>Tutorial_ArrayClass_cwise_other</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ArrayClass_interop.vcxproj">
+      <Project>{248B5CBC-2E47-3FE0-B8CA-F44EEE4ACEA3}</Project>
+      <Name>Tutorial_ArrayClass_interop</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ArrayClass_interop_matrix.vcxproj">
+      <Project>{9E58189C-BA48-3E11-A62A-8E373CD8DCFB}</Project>
+      <Name>Tutorial_ArrayClass_interop_matrix</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ArrayClass_mult.vcxproj">
+      <Project>{C44AE280-EB55-3DBF-A1C0-0372BC4C07E4}</Project>
+      <Name>Tutorial_ArrayClass_mult</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_BlockOperations_block_assignment.vcxproj">
+      <Project>{3BD8FB05-2B0E-394F-9B3E-9C3B2F25BB9E}</Project>
+      <Name>Tutorial_BlockOperations_block_assignment</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_BlockOperations_colrow.vcxproj">
+      <Project>{72E3EFD5-6236-33D6-9E04-747470014392}</Project>
+      <Name>Tutorial_BlockOperations_colrow</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_BlockOperations_corner.vcxproj">
+      <Project>{FAF7D43C-28C5-3C9C-BC16-A079A4E4E1D3}</Project>
+      <Name>Tutorial_BlockOperations_corner</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_BlockOperations_print_block.vcxproj">
+      <Project>{E3942AEE-7020-3567-BED0-FE550CED6E79}</Project>
+      <Name>Tutorial_BlockOperations_print_block</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_BlockOperations_vector.vcxproj">
+      <Project>{ECEBB74A-8B0D-307B-9D99-6B7FF9781D14}</Project>
+      <Name>Tutorial_BlockOperations_vector</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_PartialLU_solve.vcxproj">
+      <Project>{B7C04961-1E8F-3DF3-B392-5078AD1FDD2C}</Project>
+      <Name>Tutorial_PartialLU_solve</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_broadcast_1nn.vcxproj">
+      <Project>{81710EEB-79BB-3330-993D-76277A302C28}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_broadcast_1nn</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_broadcast_simple.vcxproj">
+      <Project>{D4925581-23D2-30AA-A505-E9A0B3C13887}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_broadcast_simple</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_broadcast_simple_rowwise.vcxproj">
+      <Project>{42673BF6-0A85-3E68-9EA4-8C7E71EB302A}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_broadcast_simple_rowwise</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_colwise.vcxproj">
+      <Project>{9F9D93D5-6053-333C-B301-922F1AAB2B53}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_colwise</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_maxnorm.vcxproj">
+      <Project>{1A9DC6D1-4EC0-31EE-BC04-215016EB9E9D}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_maxnorm</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_reductions_bool.vcxproj">
+      <Project>{54401BCB-06DC-3222-8A6D-B4F67C09C999}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_reductions_bool</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_reductions_norm.vcxproj">
+      <Project>{B8A3E9F6-E0DF-3B28-BCC3-7A58D8FC725A}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_reductions_norm</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_reductions_operatornorm.vcxproj">
+      <Project>{1346B2D1-E5FD-3005-BB52-DA856E66A774}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_reductions_operatornorm</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_rowwise.vcxproj">
+      <Project>{B850FBAB-0607-32B0-9107-DACE0452166E}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_rowwise</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_visitors.vcxproj">
+      <Project>{E2EBAC68-D33D-3711-94F7-888310A8F04A}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_visitors</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_simple_example_dynamic_size.vcxproj">
+      <Project>{1D444BDE-B09E-36D9-B44C-09901592B0F5}</Project>
+      <Name>Tutorial_simple_example_dynamic_size</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\Tutorial_simple_example_fixed_size.vcxproj">
+      <Project>{79E85D62-AA4A-3119-8031-3B1D112456CF}</Project>
+      <Name>Tutorial_simple_example_fixed_size</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\class_Block.vcxproj">
+      <Project>{75EACCDC-4EDB-3696-9FD7-0FEAB6D80944}</Project>
+      <Name>class_Block</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\class_CwiseBinaryOp.vcxproj">
+      <Project>{12F7BA3F-E59A-35B3-8603-8C78F3C77584}</Project>
+      <Name>class_CwiseBinaryOp</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\class_CwiseUnaryOp.vcxproj">
+      <Project>{E1BAF57F-739D-3B93-A9B6-45FADCD93164}</Project>
+      <Name>class_CwiseUnaryOp</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\class_CwiseUnaryOp_ptrfun.vcxproj">
+      <Project>{AAC3B78B-A966-3BE7-BD52-758FBBA8198D}</Project>
+      <Name>class_CwiseUnaryOp_ptrfun</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\class_FixedBlock.vcxproj">
+      <Project>{F098978B-F54C-365C-9C42-EA5EC3FA7930}</Project>
+      <Name>class_FixedBlock</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\class_FixedReshaped.vcxproj">
+      <Project>{1929D6E3-13A3-314A-80BA-BAD15B79E7AE}</Project>
+      <Name>class_FixedReshaped</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\class_FixedVectorBlock.vcxproj">
+      <Project>{7C996019-95E5-34CD-952D-762D453A8571}</Project>
+      <Name>class_FixedVectorBlock</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\class_Reshaped.vcxproj">
+      <Project>{401C35DE-3437-32FC-9129-3A188DD69418}</Project>
+      <Name>class_Reshaped</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\class_VectorBlock.vcxproj">
+      <Project>{3FA51B7E-F647-3F73-A691-BAE514A4B281}</Project>
+      <Name>class_VectorBlock</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\function_taking_eigenbase.vcxproj">
+      <Project>{ECB5F717-68E7-372E-A774-B8A90FE16F28}</Project>
+      <Name>function_taking_eigenbase</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\function_taking_ref.vcxproj">
+      <Project>{B0181C7B-F08E-39AA-A516-E0A545CEB505}</Project>
+      <Name>function_taking_ref</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\make_circulant.vcxproj">
+      <Project>{7058699B-4765-341F-BFA0-0F3E2F08CF36}</Project>
+      <Name>make_circulant</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\make_circulant2.vcxproj">
+      <Project>{1052988C-A709-3AF6-8A21-77EC9CA09C8F}</Project>
+      <Name>make_circulant2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\matrixfree_cg.vcxproj">
+      <Project>{24780390-C765-3CF2-8BD1-8DFCDABB64C8}</Project>
+      <Name>matrixfree_cg</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\nullary_indexing.vcxproj">
+      <Project>{E852C21D-65B8-394A-A98A-97242F33F619}</Project>
+      <Name>nullary_indexing</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\tut_arithmetic_add_sub.vcxproj">
+      <Project>{F53380DB-6548-3F29-95E4-F4D90DF13FE9}</Project>
+      <Name>tut_arithmetic_add_sub</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\tut_arithmetic_dot_cross.vcxproj">
+      <Project>{2B29C033-27B8-3BD1-B5BD-0650CB56B350}</Project>
+      <Name>tut_arithmetic_dot_cross</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\tut_arithmetic_matrix_mul.vcxproj">
+      <Project>{C66F2141-9237-3794-9960-B1CF347DCC2F}</Project>
+      <Name>tut_arithmetic_matrix_mul</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\tut_arithmetic_redux_basic.vcxproj">
+      <Project>{5B8222C9-B45B-3947-9608-09657DB0DE35}</Project>
+      <Name>tut_arithmetic_redux_basic</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\tut_arithmetic_scalar_mul_div.vcxproj">
+      <Project>{290B0074-2E74-3384-8BD5-3D5D805C9420}</Project>
+      <Name>tut_arithmetic_scalar_mul_div</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\tut_matrix_coefficient_accessors.vcxproj">
+      <Project>{2BC0AEDE-DC7E-3611-8654-D2647289F09D}</Project>
+      <Name>tut_matrix_coefficient_accessors</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\tut_matrix_resize.vcxproj">
+      <Project>{80AC2D0A-9124-3909-8961-E3CE4AE9854C}</Project>
+      <Name>tut_matrix_resize</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\examples\tut_matrix_resize_fixed_size.vcxproj">
+      <Project>{573067D1-4978-3777-A0FC-28DB414701D7}</Project>
+      <Name>tut_matrix_resize_fixed_size</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

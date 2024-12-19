@@ -38,6 +38,9 @@ namespace FVM {
 		void insert_fai(double, uint64_t);
 		//压力速度耦合算法
 		void simple();
+		void solver_v();
+
+
 		void read(string cwd);
 		void marge_msh(vector<string>filepath);
 		double error_Fvm(vector<double>&, vector<double>&);
@@ -54,6 +57,7 @@ namespace FVM {
 		//vector<vector<int>>mesh_neihaxi;//快速检索邻居节点哈希表
 		//vector<vector<int>>mesh_bj;//边界三角形网格
 		//vector<Point>mesh_gradient;//单元的梯度
+		vector<double>pressure;
 		map<uint64_t, vector<int>>sharedface;
 		map<uint64_t, double>sharedfai;
 		vector<Point>Grad;

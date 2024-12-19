@@ -67,6 +67,7 @@ private:
 class Mesh_cvfem {
 public:
 	bool readRmsh(string);
+	bool readRmsh(string, int);
 	const double max(const double&, const double&);
 	void findneighbor();
 	void init();

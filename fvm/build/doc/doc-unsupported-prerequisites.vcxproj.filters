@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\CMakeFiles\48f5684b921ab030f9d33c3b638aa5f9\doc-unsupported-prerequisites.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\doc\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\doc\CMakeFiles\doc-unsupported-prerequisites" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{8F247C4E-497D-3911-99C1-50E9CE28CFC4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -779,6 +779,11 @@ void Fvm::marge_msh(vector<string>filepath) {
 	delete[] file;
 }
 
+
+void Fvm::solver_v() {
+	string c;
+	//c.push_back
+}
 void Fvm::simple() {
 	//step1: solver->vf
 	//step2: update->mf
@@ -787,4 +792,13 @@ void Fvm::simple() {
 	//step5: ->step1
 	//step6: t = t + dt
 	//step7: 
+
+
+	//step1: init v, p
+	vel.resize(mesh_eles.size());
+	pressure.resize(mesh_eles.size());
+
+
+	//step2: solve v*
+
 }

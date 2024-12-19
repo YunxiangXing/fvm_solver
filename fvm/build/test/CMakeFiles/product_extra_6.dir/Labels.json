@@ -1,0 +1,16 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0/test/product_extra.cpp"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"BuildOfficial"
+		],
+		"name" : "product_extra_6"
+	}
+}

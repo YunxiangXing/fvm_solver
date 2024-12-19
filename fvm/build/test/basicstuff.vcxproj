@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9AAFA337-7DC8-3D02-B1DB-5FEAB52E52B7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>basicstuff</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\test\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0/test/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0 -BC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build --check-stamp-file C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build/test/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFile.c.in;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckStructHasMember.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindQt4.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\MacroAddFileDependencies.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\EigenSmokeTestList.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindBLAS.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindCHOLMOD.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindHWLOC.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindKLU.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindLAPACK.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindPASTIX.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindSPQR.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindSuperLU.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindUMFPACK.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0/test/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0 -BC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build --check-stamp-file C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build/test/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFile.c.in;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckStructHasMember.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindQt4.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\MacroAddFileDependencies.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\EigenSmokeTestList.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindBLAS.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindCHOLMOD.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindHWLOC.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindKLU.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindLAPACK.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindPASTIX.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindSPQR.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindSuperLU.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindUMFPACK.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0/test/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0 -BC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build --check-stamp-file C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build/test/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFile.c.in;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckStructHasMember.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindQt4.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\MacroAddFileDependencies.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\EigenSmokeTestList.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindBLAS.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindCHOLMOD.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindHWLOC.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindKLU.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindLAPACK.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindPASTIX.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindSPQR.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindSuperLU.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindUMFPACK.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0/test/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/eigen-3.4.0/eigen-3.4.0 -BC:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build --check-stamp-file C:/Users/yunxiang.xing/Desktop/LBM/fvm_solver/fvm/build/test/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFile.c.in;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckStructHasMember.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindQt4.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\MacroAddFileDependencies.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\EigenSmokeTestList.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindBLAS.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindCHOLMOD.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindHWLOC.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindKLU.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindLAPACK.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindPASTIX.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindSPQR.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindSuperLU.cmake;C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\eigen-3.4.0\eigen-3.4.0\cmake\FindUMFPACK.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\ZERO_CHECK.vcxproj">
+      <Project>{23DA7972-A893-3416-82FE-F4BD8BD7BCD4}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\basicstuff_1.vcxproj">
+      <Project>{BC3FE24B-D394-3122-B240-20C314D6B93A}</Project>
+      <Name>basicstuff_1</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\basicstuff_2.vcxproj">
+      <Project>{DF32DC9F-C665-3392-B232-905169BA8EF0}</Project>
+      <Name>basicstuff_2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\basicstuff_3.vcxproj">
+      <Project>{6F02E724-7DDE-3620-92A1-3731F265DAF6}</Project>
+      <Name>basicstuff_3</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\basicstuff_4.vcxproj">
+      <Project>{DDA6BF16-BD45-3767-B7E2-3BB6AD279F7A}</Project>
+      <Name>basicstuff_4</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\basicstuff_5.vcxproj">
+      <Project>{3BECFB1C-8778-390E-81A0-5E19849CEFAD}</Project>
+      <Name>basicstuff_5</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\basicstuff_6.vcxproj">
+      <Project>{9B72C818-C38A-39D7-BEA5-2CE166773A87}</Project>
+      <Name>basicstuff_6</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\basicstuff_7.vcxproj">
+      <Project>{A2B66A70-003C-343B-B73D-30F3784C122E}</Project>
+      <Name>basicstuff_7</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\yunxiang.xing\Desktop\LBM\fvm_solver\fvm\build\test\basicstuff_8.vcxproj">
+      <Project>{AC6633F2-F006-3C3B-87F2-2358C9B1B57C}</Project>
+      <Name>basicstuff_8</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

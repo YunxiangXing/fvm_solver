@@ -320,6 +320,9 @@ bool Mesh_cvfem::readRmsh(string cwd) {
 	}
 	return 1;
 }
+bool Mesh_cvfem::readRmsh(string cwd, int d) {
+	return 1;
+}
 const double Mesh_cvfem::max(const double& qf, const double& temp) {
 	if (qf > temp) return qf;
 	else return temp;
